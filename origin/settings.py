@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+     'rest_framework',
+    'rest_framework.authtoken',  
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -39,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'core',
-    'rest_framework',
+    'dj_rest_auth'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,13 +123,23 @@ USE_TZ = True
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+      
+      'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+         ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         'rest_framework.permissions.AllowAny',
+    
     ]
 }
 
-
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_HTTPONLY': False, 
+ 
+}
+   
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
