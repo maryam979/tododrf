@@ -9,4 +9,5 @@ class TodoSerilaizer(serializers.ModelSerializer):
             'id',
             "title",
             'content',
+            'image'
         ]
